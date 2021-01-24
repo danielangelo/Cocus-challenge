@@ -8,12 +8,11 @@ import { LocalstorageServiceService } from "../localstorage-service.service";
   styleUrls: ["./note-details.component.scss"],
 })
 export class NoteDetailsComponent {
-  title: string = "";
-  description: string = "";
-  constructor(private localstorageService: LocalstorageServiceService) {}
+  constructor(private localstorageService: LocalstorageServiceService) { }
 
   onSave() {
-    if (!this.title) {
+    const { title } = this.localstorageService.getNote();
+    if (!title) {
       alert("Please provide a title for the note");
       return;
     }
@@ -22,20 +21,24 @@ export class NoteDetailsComponent {
   }
 
   createNote() {
+    const { id, title, description } = this.localstorageService.getNote();
     return {
-      id: uuid(),
-      title: this.title,
-      description: this.description,
+      id: id || uuid(),
+      title,
+      description
     };
   }
 
-  saveData() {
-    const noteToAdd = this.createNote();
-    this.localstorageService.setNote(noteToAdd)
+  getNote() {
+    return this.localstorageService.getNote();
   }
 
-  resetInputs() {
-    this.title = "";
-    this.description = "";
+  private saveData() {
+    const noteToAdd = this.createNote();
+    this.localstorageService.saveNote(noteToAdd)
+  }
+
+  private resetInputs() {
+    this.localstorageService.resetNote();
   }
 }

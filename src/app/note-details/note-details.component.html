@@ -1,17 +1,12 @@
 <div id="note-details-content">
   <mat-form-field class="input-full-width">
     <mat-label>Title</mat-label>
-    <input matInput [(ngModel)]="title" />
+    <input matInput [(ngModel)]="getNote().title" />
   </mat-form-field>
   <mat-form-field class="input-full-width">
     <mat-label>Description</mat-label>
-    <textarea
-      [(ngModel)]="description"
-      matInput
-      cdkTextareaAutosize
-      #autosize="cdkTextareaAutosize"
-      cdkAutosizeMinRows="1"
-    ></textarea>
+    <textarea [(ngModel)]="getNote().description" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+      cdkAutosizeMinRows="1"></textarea>
   </mat-form-field>
   <button mat-raised-button color="primary" (click)="onSave()">Save</button>
 </div>

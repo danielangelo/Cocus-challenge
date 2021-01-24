@@ -12,14 +12,16 @@ export class NotesListComponent {
 
   constructor(private localstorageService: LocalstorageServiceService) {
     this.notes = this.localstorageService.getNotes();
-    this.localstorageService.note.subscribe((note) => {
+    this.localstorageService.onNoteChange.subscribe((note) => {
       this.onNoteMutation(note);
       this.notes = this.localstorageService.getNotes();
     });
   }
 
   onNoteMutation(note: NoteModel) {
-    console.log("Incoming note data:");
-    console.log(note);
+  }
+
+  selectNote(note: NoteModel) {
+    this.localstorageService.setNote(note);
   }
 }
