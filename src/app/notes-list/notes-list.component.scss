@@ -1,0 +1,29 @@
+@import "../common-styles.scss";
+
+#note-list-content {
+  padding-left: 2rem;
+  .note-item {
+    margin-top: 1rem;
+    cursor: pointer;
+
+    .title {
+      font-weight: bold;
+      height: 2rem;
+    }
+
+    .description {
+      font-style: italic;
+      padding-left: 0.5rem;
+      color: $text-color-darkBlue;
+      height: 1rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .noOverflow {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+  }
+}

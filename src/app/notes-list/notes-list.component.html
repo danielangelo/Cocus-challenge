@@ -1,1 +1,8 @@
-<p>notes-list works!</p>
+<div id="note-list-content">
+  <h1>Notes list</h1>
+  <div *ngFor="let note of notes" class="note-item">
+    <div class="title noOverflow">{{ note.title }}</div>
+    <div class="description noOverflow">{{ note.description }}</div>
+    <mat-divider></mat-divider>
+  </div>
+</div>
