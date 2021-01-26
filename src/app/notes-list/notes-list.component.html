@@ -1,8 +1,12 @@
 <div id="note-list-content">
   <h1>Notes list</h1>
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput [(ngModel)]="searchedText" (ngModelChange)="onSearch()" />
+  </mat-form-field>
   <span>Sort: </span>
-  <button mat-raised-button (click)="sort(1)">ASC</button>
-  <button mat-raised-button (click)="sort(-1)">DSC</button>
+  <button mat-raised-button (click)="onSort(1)">ASC</button>
+  <button mat-raised-button (click)="onSort(-1)">DSC</button>
   <div *ngFor="let note of notes" class="note-item" (click)="selectNote(note)">
     <div class="title noOverflow">{{ note.title }}</div>
     <div class="description noOverflow">{{ note.description }}</div>

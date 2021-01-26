@@ -10,6 +10,7 @@ import { NoteModel } from "../note.model";
 export class NotesListComponent {
   notes: NoteModel[] = [];
   sortByOrder: number = 1;
+  searchedText: string = '';
 
   constructor(private localstorageService: LocalstorageServiceService) {
     this.notes = this.localstorageService.getNotes();
@@ -22,12 +23,16 @@ export class NotesListComponent {
     this.localstorageService.setNote(note);
   }
 
-  sort(order: number) {
+  onSort(order: number) {
     if (this.sortByOrder !== order) {
       this.notes = this.localstorageService.getNotes(order);
-      console.log('NOTES:');
-      console.log(this.notes);
       this.sortByOrder = order;
     }
+  }
+
+  onSearch() {
+    this.notes = this.localstorageService.getNotes().filter((note: NoteModel) =>
+      note.title.includes(this.searchedText) || note.description.includes(this.searchedText)
+    )
   }
 }
