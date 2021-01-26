@@ -29,6 +29,18 @@ export class NoteDetailsComponent {
     };
   }
 
+  createNewNote() {
+    this.resetInputs();
+  }
+
+  deleteNote() {
+    if (this.localstorageService.getNote().id) {
+      this.localstorageService.deleteNote();
+    }else{
+      alert('There is nothing to delete');
+    }
+  }
+
   getNote() {
     return this.localstorageService.getNote();
   }

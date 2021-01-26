@@ -9,19 +9,25 @@ import { NoteModel } from "../note.model";
 })
 export class NotesListComponent {
   notes: NoteModel[] = [];
+  sortByOrder: number = 1;
 
   constructor(private localstorageService: LocalstorageServiceService) {
     this.notes = this.localstorageService.getNotes();
     this.localstorageService.onNoteChange.subscribe((note) => {
-      this.onNoteMutation(note);
       this.notes = this.localstorageService.getNotes();
     });
   }
 
-  onNoteMutation(note: NoteModel) {
-  }
-
   selectNote(note: NoteModel) {
     this.localstorageService.setNote(note);
+  }
+
+  sort(order: number) {
+    if (this.sortByOrder !== order) {
+      this.notes = this.localstorageService.getNotes(order);
+      console.log('NOTES:');
+      console.log(this.notes);
+      this.sortByOrder = order;
+    }
   }
 }

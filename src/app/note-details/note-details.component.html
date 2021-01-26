@@ -1,4 +1,6 @@
 <div id="note-details-content">
+  <button mat-raised-button color="primary" (click)="createNewNote()">New note</button>
+  <button mat-raised-button color="warn" (click)="deleteNote()">Delete note</button>
   <mat-form-field class="input-full-width">
     <mat-label>Title</mat-label>
     <input matInput [(ngModel)]="getNote().title" />
